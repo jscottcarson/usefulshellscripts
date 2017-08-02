@@ -1,0 +1,22 @@
+#!/bin/bash
+
+last | less | grep pr-jscar |  awk '{print $7}' | head -n 1 > var
+
+dt1=`cat var`
+rm -rf var
+
+# Compute the seconds since epoch for date 1
+t1=`date --date="$dt1" +%s`
+
+# Date 2 : Current date
+dt2=`date +%Y-%m-%d\ %H:%M:%S`
+
+# Compute the seconds since epoch for date 2
+t2=`date --date="$dt2" +%s`
+
+# Compute the difference in dates in seconds
+let "tDiff=$t2-$t1"
+# Compute the approximate hour difference
+let "hDiff=$tDiff/3600"
+
+echo "Approx hour diff b/w $dt1 & $dt2 = $hDiff"
