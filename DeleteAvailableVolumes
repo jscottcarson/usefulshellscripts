@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# This script deletes all available volumes in an AWS account.
+
+availvol=$(aws ec2 describe-volumes | grep -B 1 available | grep VolumeId | sed 's/"\|:\|,\|VolumeId\| //g')
+
+for i in $availvol; do
+
+aws ec2 delete-volume --region us-east-1 --volume-id $i
+
+done
