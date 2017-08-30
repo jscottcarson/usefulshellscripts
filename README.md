@@ -2,7 +2,7 @@
 
 
 ### Delete Available Volumes
-This script deletes all available (unnattached) volumes in an AWS account.
+This script deletes all available (unattached) volumes in an AWS account.
 
 
 ### Encrypt Snapshots
