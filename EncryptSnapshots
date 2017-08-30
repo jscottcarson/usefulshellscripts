@@ -2,11 +2,16 @@
 
 # This script will encrypt all unencrypted snapshots in an AWS account. You can uncommet the Delete unencrypted snapshot line if you'd like, but it will not delete snapshots attached to AMI's.
 
+echo "Enter your AWS Account number followed by [ENTER]:"
+
+read accountId
+
+
 echo
 echo "Let's begin!"
 
 # Get unencrypted snapshot Id's
-snaps=$(aws ec2 describe-snapshots --region us-east-1 --filters Name=owner-id,Values=940078136635  | grep -A 7 false | grep SnapshotId | sed 's/"\|:\|SnapshotId\| //g')
+snaps=$(aws ec2 describe-snapshots --region us-east-1 --filters Name=owner-id,Values=$accountId | grep -A 7 false | grep SnapshotId | sed 's/"\|:\|SnapshotId\| //g')
 
 # Loop through the unecnrypted snapshots
 
